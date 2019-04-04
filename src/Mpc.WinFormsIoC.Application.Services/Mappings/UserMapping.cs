@@ -1,9 +1,9 @@
 ﻿namespace Mpc.WinFormsIoC.Application.Services.Mappings
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Mpc.WinFormsIoC.Application.Dto;
     using Mpc.WinFormsIoC.Domain.Models;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public static class UserMapping
     {
@@ -31,7 +31,9 @@
                 Id = user.Id,
                 Name = user.Name,
                 Password = HidePassword,
-                Username = user.Username
+                Username = user.Username,
+                CountryID = user.CountryID,
+                CountryName = (user.CountryID == null ? string.Empty : user.Country.Name)
             };
         }
 
@@ -54,7 +56,9 @@
                 Id = user.Id,
                 Name = user.Name,
                 Password = user.Password == HidePassword ? string.Empty : user.Password,
-                Username = user.Username
+                Username = user.Username,
+                CountryID = user.CountryID,
+                //Country = user.Country.ToModel()
             };
         }
     }

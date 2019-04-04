@@ -1,14 +1,14 @@
 ﻿namespace Mpc.WinFormsIoC.Application.Services.Users
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Mpc.WinFormsIoC.Application.Dto;
     using Mpc.WinFormsIoC.Application.Services.Mappings;
     using Mpc.WinFormsIoC.Application.Services.Security;
     using Mpc.WinFormsIoC.Domain.Core;
     using Polly;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class UserService : IUserService
     {
@@ -76,6 +76,7 @@
 
             currentUser.Email = user.Email;
             currentUser.Name = user.Name;
+            currentUser.CountryID = user.CountryID;
 
             _unitOfWork.UsersRepository.Update(currentUser);
 

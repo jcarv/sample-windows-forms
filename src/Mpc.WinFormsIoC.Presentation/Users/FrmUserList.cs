@@ -10,7 +10,7 @@ namespace Mpc.WinFormsIoC.Presentation.Users
 {
     public partial class FrmUserList : Form
     {
-        private IUserService _userService;
+        private IUserService _userService; 
 
         public FrmUserList(IUserService userService)
         {

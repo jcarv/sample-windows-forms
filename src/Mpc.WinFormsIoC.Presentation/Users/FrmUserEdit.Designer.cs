@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LblId = new System.Windows.Forms.Label();
             this.TxtId = new System.Windows.Forms.TextBox();
             this.TxtUsername = new System.Windows.Forms.TextBox();
@@ -39,6 +40,10 @@
             this.LblName = new System.Windows.Forms.Label();
             this.LblEmail = new System.Windows.Forms.Label();
             this.BtnSave = new System.Windows.Forms.Button();
+            this.LblCountry = new System.Windows.Forms.Label();
+            this.CmbCountry = new System.Windows.Forms.ComboBox();
+            this.countryDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.countryDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LblId
@@ -124,7 +129,7 @@
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(277, 140);
+            this.BtnSave.Location = new System.Drawing.Point(277, 167);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(75, 23);
             this.BtnSave.TabIndex = 10;
@@ -132,12 +137,38 @@
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_ClickAsync);
             // 
+            // LblCountry
+            // 
+            this.LblCountry.AutoSize = true;
+            this.LblCountry.Location = new System.Drawing.Point(48, 143);
+            this.LblCountry.Name = "LblCountry";
+            this.LblCountry.Size = new System.Drawing.Size(43, 13);
+            this.LblCountry.TabIndex = 11;
+            this.LblCountry.Text = "Country";
+            // 
+            // CmbCountry
+            // 
+            this.CmbCountry.DataSource = this.countryDtoBindingSource;
+            this.CmbCountry.DisplayMember = "Name";
+            this.CmbCountry.FormattingEnabled = true;
+            this.CmbCountry.Location = new System.Drawing.Point(97, 140);
+            this.CmbCountry.Name = "CmbCountry";
+            this.CmbCountry.Size = new System.Drawing.Size(255, 21);
+            this.CmbCountry.TabIndex = 12;
+            this.CmbCountry.ValueMember = "Id";
+            // 
+            // countryDtoBindingSource
+            // 
+            this.countryDtoBindingSource.DataSource = typeof(Mpc.WinFormsIoC.Application.Dto.CountryDto);
+            // 
             // FrmUserEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(372, 174);
+            this.ClientSize = new System.Drawing.Size(372, 198);
+            this.Controls.Add(this.CmbCountry);
+            this.Controls.Add(this.LblCountry);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.LblEmail);
             this.Controls.Add(this.LblName);
@@ -154,6 +185,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmUserEdit";
             this.Load += new System.EventHandler(this.FrmUserEdit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.countryDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +204,8 @@
         private System.Windows.Forms.Label LblName;
         private System.Windows.Forms.Label LblEmail;
         private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.Label LblCountry;
+        private System.Windows.Forms.ComboBox CmbCountry;
+        private System.Windows.Forms.BindingSource countryDtoBindingSource;
     }
 }

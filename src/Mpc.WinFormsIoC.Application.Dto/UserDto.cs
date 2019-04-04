@@ -11,7 +11,7 @@
         public string Email { get; set; }
 
         /// <summary>
-        /// User's identifier
+        /// User identifier
         /// </summary>
         public int Id { get; set; }
 
@@ -29,5 +29,15 @@
         /// Username
         /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Country identifier
+        /// </summary>
+        public int? CountryID { get; set; }
+
+        /// <summary>
+        /// Country name
+        /// </summary>
+        public string CountryName { get; set; }
     }
 }

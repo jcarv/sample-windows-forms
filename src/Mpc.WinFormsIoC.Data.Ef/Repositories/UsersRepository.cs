@@ -1,10 +1,10 @@
 ﻿namespace Mpc.WinFormsIoC.Data.Ef.Repositories
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Mpc.WinFormsIoC.Domain.Core.Repositories;
     using Mpc.WinFormsIoC.Domain.Models;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class UsersRepository : IUsersRepository
     {
@@ -29,12 +29,14 @@
         {
             return _context.Users
                 .AsNoTracking()
+                .Include(u => u.Country)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<List<UserModel>> GetByFilterAsync(int page, int pageSize)
         {
             return _context.Users
+                .Include(u => u.Country)
                 .AsNoTracking()
                 .ToListAsync();
         }

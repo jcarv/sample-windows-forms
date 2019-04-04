@@ -36,6 +36,13 @@
                 .HasColumnName("Username")
                 .IsRequired()
                 .HasMaxLength(255);
+
+            builder.Property(u => u.CountryID)
+                .HasColumnName("CountryID");
+
+            builder.HasOne(u => u.Country)
+                .WithMany(c => c.Users)
+                .HasForeignKey(u => u.CountryID);
         }
     }
 }

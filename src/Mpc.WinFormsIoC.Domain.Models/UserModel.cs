@@ -11,5 +11,9 @@
         public string Password { get; set; }
 
         public string Username { get; set; }
+
+        public int? CountryID { get; set; }
+
+        public CountryModel Country { get; set; }
     }
 }

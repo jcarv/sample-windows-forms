@@ -1,9 +1,9 @@
 ﻿namespace Mpc.WinFormsIoC.Presentation
 {
-    using System;
-    using System.Windows.Forms;
     using Mpc.WinFormsIoC.Application.Services.Users;
     using Mpc.WinFormsIoC.Presentation.Config;
+    using System;
+    using System.Windows.Forms;
 
     public partial class FrmMain : Form
     {

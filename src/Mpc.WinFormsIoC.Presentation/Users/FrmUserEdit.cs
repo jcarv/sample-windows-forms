@@ -1,18 +1,21 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Forms;
-using Mpc.WinFormsIoC.Application.Dto;
+﻿using Mpc.WinFormsIoC.Application.Dto;
+using Mpc.WinFormsIoC.Application.Services.Countries;
 using Mpc.WinFormsIoC.Application.Services.Users;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Mpc.WinFormsIoC.Presentation.Users
 {
     public partial class FrmUserEdit : Form
     {
         private IUserService _userService;
+        private ICountryService _countryService;
 
-        public FrmUserEdit(IUserService userService)
+        public FrmUserEdit(IUserService userService, ICountryService countryService)
         {
             InitializeComponent();
             _userService = userService;
+            _countryService = countryService;
         }
 
         public int? UserId { get; set; } = null;
@@ -38,7 +41,7 @@ namespace Mpc.WinFormsIoC.Presentation.Users
             TxtEmail.Text = user.Email;
             TxtName.Text = user.Name;
             TxtPassword.Text = user.Password;
-            TxtUsername.Text = user.Username;
+            CmbCountry.SelectedValue = (user.CountryID == null ? -1 : user.CountryID);
         }
 
         private async void FrmUserEdit_Load(object sender, System.EventArgs e)
@@ -54,6 +57,15 @@ namespace Mpc.WinFormsIoC.Presentation.Users
 
                 if (existUser != null)
                 {
+                    var emptyCountry = new CountryDto();
+                    emptyCountry.Id = -1;
+
+                    var countries = await _countryService.GetAllAsync();
+                    countries.Insert(0, emptyCountry);
+
+                    countryDtoBindingSource.DataSource = countries;
+                    countryDtoBindingSource.ResetBindings(false);
+
                     FillUser(existUser);
                 }
             }
@@ -61,12 +73,15 @@ namespace Mpc.WinFormsIoC.Presentation.Users
 
         private UserDto GetUser()
         {
+            var selectedCountryID = (int)CmbCountry.SelectedValue;
             var user = new UserDto
             {
                 Email = TxtEmail.Text,
                 Name = TxtName.Text,
                 Password = TxtPassword.Text,
-                Username = TxtUsername.Text
+                Username = TxtUsername.Text,
+                CountryID = (selectedCountryID == -1 ? (int?)null : selectedCountryID),
+                //if (CmbCountry.SelectedValue != -1) { CountryID = (int)CmbCountry.SelectedValue },
             };
 
             return user;
